@@ -1,0 +1,15 @@
+<h1>Create a new contact</h1>
+
+<br />
+
+<%= form_tag "/contacts", method: :post do %>
+	First name: <input type="text" name="first_name">
+	Last name: <input type="text" name="last_name">
+	Email: <input type="text" name="email">
+	Phone number: <input time="text" name="phone_number">
+	<input type="submit" value="Create!">
+<% end %>
+
+<br />
+
+<%= link_to "Return to index", "/contacts/", method: :get %>

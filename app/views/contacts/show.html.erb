@@ -1,0 +1,33 @@
+<h1>Contact info:</h1>
+
+Full name: <%= @contact.full_name %>
+
+<br />
+<br />
+
+Phone number: <%= @contact.japanese_phone_number %>
+
+<br />
+<br />
+
+<%= @contact.inspect %>
+
+<br />
+<br />
+
+This contact was last updated on: <%= @contact.friendly_time %>
+
+<br />
+<br />
+
+<%= link_to "Edit this contact", "/contacts/#{@contact.id}/edit", method: :get %>
+
+<br />
+<br />
+
+<%= link_to "Delete this contact", "/contacts/#{@contact.id}", method: :delete %>
+
+<br />
+<br />
+
+<%= link_to "Return to index", "/contacts", method: :get %>

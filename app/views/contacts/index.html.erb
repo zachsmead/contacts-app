@@ -1,0 +1,14 @@
+<h1><%= @title %></h1>
+
+<% @contacts.each do |contact| %>
+	<a href="/contacts/<%= contact.id %>">
+		<%= contact.full_name %>: <%= contact.japanese_phone_number %></a><br />
+<% end %>
+
+<br />
+
+<%= link_to "Add a new contact", "/contacts/new", method: :get %>
+
+<br /><br />
+
+<%= link_to "Find all contacts named John", "/contacts/all_johns", method: :get %>

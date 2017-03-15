@@ -1,0 +1,10 @@
+<h1>All Johns!</h1>
+
+<% @contacts.each do |contact| %>
+	<%= contact.find_johns %>
+	<br />
+<% end %>
+
+<br />
+
+<%= link_to "Return to index", "/contacts", method: :get %>
