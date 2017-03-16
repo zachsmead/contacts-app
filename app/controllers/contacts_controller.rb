@@ -21,8 +21,8 @@ class ContactsController < ApplicationController
 	def update
 		@contact = Contact.find_by(id: params[:id])
 
-		@contact.update(first_name:params[:first_name],
-			last_name:params[:last_name], email:params[:email], phone_number:params[:phone_number])
+		@contact.update(first_name:params[:first_name], middle_name:params[:middle_name],
+			last_name:params[:last_name], email:params[:email], phone_number:params[:phone_number], bio:params[:bio])
 
 		redirect_to "/contacts/#{@contact.id}"
 
@@ -43,8 +43,8 @@ class ContactsController < ApplicationController
 
 
 	def create
-		@new_contact = Contact.create(first_name:params[:first_name],
-			last_name:params[:last_name], email:params[:email], phone_number:params[:phone_number])
+		@new_contact = Contact.create(first_name:params[:first_name], middle_name:params[:middle_name],
+			last_name:params[:last_name], email:params[:email], phone_number:params[:phone_number], bio:params[:bio])
 
 		redirect_to "/contacts/#{@new_contact.id}"
 

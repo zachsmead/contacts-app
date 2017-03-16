@@ -3,10 +3,12 @@
 <br />
 
 <%= form_tag "/contacts/#{@contact.id}", method: :patch do %>
-	First name: <input type="text" name="first_name" value="<%= @contact.first_name %>" >
-	Last name: <input type="text" name="last_name" value="<%= @contact.last_name %>" >
-	Email: <input type="text" name="email" value="<%= @contact.email %>" >
-	Phone number: <input time="text" name="phone_number" value="<%= @contact.phone_number %>" >
+	First name: <input type="text" name="first_name" value="<%= @contact.first_name %>" ><br />
+	Middle name: <input type="string" name="middle_name" value="<%= @contact.middle_name %>" ><br />
+	Last name: <input type="text" name="last_name" value="<%= @contact.last_name %>" ><br />
+	Email: <input type="text" name="email" value="<%= @contact.email %>" ><br />
+	Phone number: <input type="text" name="phone_number" value="<%= @contact.phone_number %>" ><br />
+	Bio: <input type="text" name="bio" value="<%= @contact.bio %>" ><br />
 	<input type="submit" value="Update!">
 <% end %>
 
