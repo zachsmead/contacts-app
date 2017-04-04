@@ -1,6 +1,12 @@
 <h1>Contact info:</h1>
 
-Full name: <%= @contact.full_name %>
+Full name: <%= @contact.full_name %><br /><br />
+
+Contact groups: <br />
+
+<% @groups.each do |group| %>
+	<%= group.name %><br />
+<% end %>
 
 <br />
 <br />

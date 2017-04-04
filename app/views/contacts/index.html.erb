@@ -1,8 +1,13 @@
-<h1><%= @title %></h1>
+<h1><%= @title %></h1><br />
+
+<% if @group %>
+	Showing contacts in <%= @group.name %><br /><br />
+<% end %>
 
 <% @contacts.each do |contact| %>
 	<a href="/contacts/<%= contact.id %>">
-		<%= contact.full_name %>: <%= contact.japanese_phone_number %></a><br />
+		<%= contact.full_name %>: <%= contact.japanese_phone_number %>
+	</a><br />
 <% end %>
 
 <br />

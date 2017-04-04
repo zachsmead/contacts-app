@@ -1,3 +1,17 @@
+<% if @contact.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@contact.errors.count, "error") %>
+			prevented the contact from being saved:</h2>
+
+			<ul>
+				<% @contact.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+	</div>
+<% end %>
+
+
 <h1>Create a new contact</h1>
 
 <br />
@@ -9,8 +23,8 @@
 	Email: <input type="text" name="email"><br />
 	Phone number: <input type="text" name="phone_number"><br />
 	Bio: <input type="text" name="bio"><br />
-	Latitude: <input type="float" name="latitude"><br />
-	Longitude: <input type="float" name="longitude"><br />
+	<!-- Latitude: <input type="float" name="latitude"><br />
+	Longitude: <input type="float" name="longitude"><br /> -->
 	Address: <input type="text" name="address"><br />
 	<input type="submit" value="Create!">
 <% end %>

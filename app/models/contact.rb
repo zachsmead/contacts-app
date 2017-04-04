@@ -1,5 +1,14 @@
 class Contact < ApplicationRecord
 
+	has_many :groups, through: :grouped_contacts
+	has_many :users, through: :grouped_contacts
+	has_many :grouped_contacts
+
+	validates :first_name, presence: true
+	validates :last_name, presence: true
+	validates :email, uniqueness: true
+	validates :longitude, :latitude, presence: true
+
 	def friendly_time
 		updated_at.strftime("%B %e, %Y")
 	end
@@ -19,5 +28,6 @@ class Contact < ApplicationRecord
 		end
 
 	end
+
 
 end

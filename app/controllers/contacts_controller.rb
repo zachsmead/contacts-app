@@ -6,14 +6,39 @@ class ContactsController < ApplicationController
 
 		@title = "Contacts"
 
-		@contact = Contact.first
+		group_id = params[:group_id]
 
-		@contacts = Contact.all
+		@group = current_user.groups.find_by(id: group_id)
+
+		p "*" * 100
+		p current_user.groups.find_by(id: group_id)
+		p "*" * 100
+
+		if group_id && @group
+			@contacts = @group.contacts
+		elsif group_id && !@group
+			@contacts = Contact.all
+			flash[:warning] = "Invalid group choice!"
+		else
+			@contacts = Contact.all
+		end
+
+		# p "*" * 100
+		# p @contacts
+		# p "*" * 100
 
 	end
 
 	def show
 		@contact = Contact.find_by(id: params[:id])
+		@groups = @contact.groups
+
+		if current_user.id == @contact.user_id
+			@contact = Contact.find_by(id: params[:id])
+		else
+			flash[:danger] = "You can't view this contact."
+			redirect_to "/"
+		end
 	end
 
 	def edit
@@ -44,18 +69,25 @@ class ContactsController < ApplicationController
 	end
 
 	def new
+		@contact = Contact.new
 	end
 
 
 	def create
 		coordinates = Geocoder.coordinates(params[:address])
-		@new_contact = Contact.create(first_name:params[:first_name], middle_name:params[:middle_name],
+
+		@contact = Contact.new(first_name:params[:first_name], middle_name:params[:middle_name],
 			last_name:params[:last_name], email:params[:email], phone_number:params[:phone_number], bio:params[:bio],
-			latitude:coordinates[0], longitude:coordinates[1])
+			latitude:coordinates.first, longitude:coordinates.last)
 
-		redirect_to "/contacts/#{@new_contact.id}"
+		if @contact.save
+			flash[:success] = "Contact created"
+			redirect_to "/contacts/#{@contact.id}"
+		else
+			flash[:danger] = "Unable to create contact!"
+			render 'new.html.erb'
+		end
 
-		flash[:success] = "Contact created"
 	end
 
 	def all_johns
